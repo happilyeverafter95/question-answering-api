@@ -19,7 +19,3 @@ def get_qa_response(question: str, context: str) -> str:
     answer_start = tf.argmax([output['start_logits']], axis=1).numpy()[0]
     answer_end = (tf.argmax([output['end_logits']], axis=1) + 1).numpy()[0]
     return tokenizer.convert_tokens_to_string(tokenizer.convert_ids_to_tokens(input_ids[answer_start:answer_end]))
-
-
-if __name__ == '__main__':
-    get_qa_response(sys.argv[0], sys.argv[1])

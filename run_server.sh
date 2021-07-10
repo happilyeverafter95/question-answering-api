@@ -7,6 +7,6 @@ python3 serving/save_model.py
 docker cp model/saved_model serving_base:/models/bert
 
 echo -e "Starting new serving container ..."
-docker commit --change "ENV QA bert" serving_base qa_bert
+docker commit --change "ENV MODEL_NAME bert" serving_base qa_bert
 docker kill serving_base
 docker run -d -p 8501:8501 -p 8500:8500 --name bert qa_bert
